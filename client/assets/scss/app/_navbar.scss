@@ -1,0 +1,93 @@
+
+.auth-navbar {
+    @media (max-width: map_get($grid-breakpoints, 'lg')) {
+      background-color: $white;
+    }
+}
+
+.is-default-navbar {
+  &:not(.is-home) {
+    padding-top: 59px;
+  }
+
+  &.is-home {
+    //padding-top: 105px;
+    padding-top: 59px;
+  }
+
+  @media (max-width: map_get($grid-breakpoints, 'lg')) {
+    padding-top: 56px !important;
+  }
+
+  .default-navbar-standard {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+  }
+}
+
+.is-auth-navbar {
+  .auth-navbar-standard {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+
+    @media (max-width: map_get($grid-breakpoints, 'lg')) {
+      position: fixed;
+    }
+  }
+
+  @media (max-width: map_get($grid-breakpoints, 'lg')) {
+    padding-top: 56px !important;
+  }
+}
+
+.auth-navbar,
+.default-navbar {
+  .navbar-mobile-overlay {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    //background: rgba(#000, .5);
+    z-index: -1;
+    transition: all 0.4s ease-out;
+    visibility: hidden;
+
+    @media (max-width: map_get($grid-breakpoints, 'lg')) {
+      display: block !important;
+    }
+  }
+  .navbar-collapse.show ~ .navbar-mobile-overlay {
+    background: rgba(#000, .5);
+    visibility: visible;
+  }
+
+  .navbar-collapse {
+    .navbar-nav {
+      @media (max-width: 991px) {
+        padding-top: 40px;
+      }
+    }
+  }
+
+  .dropdown {
+    @media (max-width: map_get($grid-breakpoints, 'lg')) {
+      &-menu {
+        border: none;
+        background-color: rgba(0, 0, 0, 0.02);
+        border-radius: 0;
+      }
+
+      &-item {
+        padding: 0.45rem 1.5rem;
+      }
+    }
+  }
+}

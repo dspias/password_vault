@@ -19,12 +19,25 @@ export default {
     ]
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
+  /*
+  ** Customize the progress-bar color
+  */
+  loading: { color: '#fff' },
+  /*
+  ** Global CSS
+  */
   css: [
+    '@/assets/scss/app.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/set-nuxt-ssr-referer.server.js',
+    '~/plugins/extend-formdata.client.js',
+    '~/plugins/init-csrf.client.js',
+    '~/plugins/lodash-in-templates.js',
+    '~/plugins/filters.js',
+    '~/plugins/vee-validate'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -46,6 +59,14 @@ export default {
   ],
   auth: {
     // Options
+  },
+  module: {
+    rules: [
+      {
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      }
+    ]
   },
   bootstrapVue: {
     icons: true,
@@ -69,5 +90,12 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: ['vee-validate/dist/rules']
+  },
+
+  router: {
+    middleware: [
+      'ensureUserIsVerified'
+    ]
   }
 }

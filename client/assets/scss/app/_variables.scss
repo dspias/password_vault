@@ -1,0 +1,252 @@
+///*-----------------------------------------------
+//|   Breakpoints
+//-----------------------------------------------*/
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1480px,
+) !default;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1540px,
+) !default;
+
+//*-----------------------------------------------
+//|   Spacing
+//-----------------------------------------------*/
+
+$spacer: 1rem !default;
+$spacers: () !default;
+$spacers: map-merge($spacers, (
+  0 : 0,
+  1 : ($spacer * 0.25),
+  2 : ($spacer * 0.5),
+  '2-1': 12px,
+  '2-2': 14px,
+  3 : $spacer,
+  '3-1': 20px,
+  '3-2': 24px,
+  4 : ($spacer * 1.75),
+  '4-1' : 40px,
+  5 : ($spacer * 3.0),
+  6 : ($spacer * 4.0),
+  7 : ($spacer * 5.0),
+  8 : ($spacer * 7.5),
+  9 : ($spacer * 10.0),
+  10 : ($spacer * 12.5),
+  11 : ($spacer * 15.0),
+));
+
+// This variable affects the `.h-*` and `.w-*` classes.
+$sizes: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$sizes: map-merge(
+    (
+      25: 25%,
+      50: 50%,
+      75: 75%,
+      100: 100%,
+      auto: auto
+    ),
+    $sizes
+);
+
+//*-----------------------------------------------
+//|   Color System
+//-----------------------------------------------*/
+$green:         #088952 !default;
+$cyan:         #00BDC9 !default;
+$secondary:         #999999 !default;
+$dark:         #102A39 !default;
+$darkest:        #0B1D28 !default;
+$warning:         #F8E9A6 !default;
+
+$theme-colors: () !default;
+$theme-colors: map_merge($theme-colors, (
+  'green': $green,
+  'secondary': $secondary,
+  'cyan': $cyan,
+  'darkest': $darkest
+));
+
+$white: #fff !default;
+$gray-100: #F5F5F5 !default;
+$gray-200: #E7E8E8 !default;
+$gray-300: #d8e2ef !default;
+$gray-400: #CCCCCC !default;
+$gray-500: #999999 !default;
+$gray-600: #748194 !default;
+$gray-700: #6C6C6C !default;
+$gray-800: #4A4A4A !default;
+$gray-900: #333333 !default;
+$gray-1000: #232e3c !default;
+$gray-1100: #0b1727 !default;
+$black: #000 !default;
+
+$grays: () !default;
+$grays: map_merge($grays, (
+  'black': $black,
+  '100': $gray-100,
+  '200': $gray-200,
+  '300': $gray-300,
+  '400': $gray-400,
+  '500': $gray-500,
+  '600': $gray-600,
+  '700': $gray-700,
+  '800': $gray-800,
+  '900': $gray-900,
+  '1000': $gray-1000,
+  '1100': $gray-1100,
+  'white': $white,
+));
+
+$font-sizes: () !default;
+$font-sizes: (
+  '-3': 12px,
+  '-2': 14px,
+  '-1': 16px,
+  0: 18px,
+  1: 20px,
+  2: 24px,
+  3: 32px,
+  4: 40px,
+  5: 48px,
+  6: 56px,
+  7: 60px,
+);
+
+$heading-font-sizes: (
+  '-3': map_get($font-sizes, '-3'),
+  '-2': map_get($font-sizes, '-2'),
+  '-1': map_get($font-sizes, '-1'),
+  0: map_get($font-sizes, 0),
+  1: map_get($font-sizes, 6),
+  2: map_get($font-sizes, 5),
+  3: map_get($font-sizes, 4),
+  4: map_get($font-sizes, 3),
+  5: map_get($font-sizes, 2),
+  6: map_get($font-sizes, 1),
+);
+
+$line-heights: () !default;
+$line-heights: (
+  '-3': 16px,
+  '-2': 18px,
+  '-1': 20px,
+  0: 22px,
+  1: 24px,
+  2: 28px,
+  3: 42px,
+  4: 48px,
+  5: 56px,
+  6: 60px,
+);
+
+$heading-line-heights: (
+  '-3': map_get($line-heights, '-3'),
+  '-2': map_get($line-heights, '-2'),
+  '-1': map_get($line-heights, '-1'),
+  0: map_get($line-heights, 0),
+  1: map_get($line-heights, 6),
+  2: map_get($line-heights, 5),
+  3: map_get($line-heights, 4),
+  4: map_get($line-heights, 3),
+  5: map_get($line-heights, 2),
+  6: map_get($line-heights, 1),
+);
+
+$font-size-base: 1rem;
+$line-height-base: 1.4 !default;
+
+$font-weight-thin: 100 !default;
+$font-weight-extra-light: 200 !default;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semi-bold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-extra-bold: 800 !default;
+$font-weight-black: 900 !default;
+
+$h1-font-size: map_get($font-sizes, 1) !default;
+$h2-font-size: map_get($font-sizes, 2) !default;
+$h3-font-size: map_get($font-sizes, 3) !default;
+$h4-font-size: map_get($font-sizes, 4) !default;
+$h5-font-size: map_get($font-sizes, 5) !default;
+$h6-font-size: map_get($font-sizes, 61) !default;
+
+$display1-size:  map_get($font-sizes, 0) !default;
+$display2-size:  map_get($font-sizes, '-1') !default;
+$display3-size:  map_get($font-sizes, '-2') !default;
+$display4-size:  map_get($font-sizes, '-3') !default;
+
+$line-height-6: map_get($line-heights, 6) !default;
+$line-height-5: map_get($line-heights, 5) !default;
+$line-height-4: map_get($line-heights, 4) !default;
+$line-height-3: map_get($line-heights, 3) !default;
+$line-height-2: map_get($line-heights, 2) !default;
+$line-height-1: map_get($line-heights, 1) !default;
+$line-height--0: map_get($line-heights, 0) !default;
+$line-height--1: map_get($line-heights, '-1') !default;
+$line-height--2: map_get($line-heights, '-2') !default;
+$line-height--3: map_get($line-heights, '-3') !default;
+
+//*-----------------------------------------------
+//|   Components
+//-----------------------------------------------*/
+$border-radius: 8px !default;
+$border-radius-soft: 12px !default;
+$border-radius-capsule: 3.125rem !default;
+
+//*-----------------------------------------------
+//|   Outline
+//-----------------------------------------------*/
+$input-btn-focus-box-shadow: none;
+
+//*-----------------------------------------------
+//|   Buttons
+//-----------------------------------------------*/
+$btn-font-weight: $font-weight-medium !default;
+$btn-focus-box-shadow: none;
+$input-btn-focus-width: 0;
+//$btn-padding-x: 20px;
+$btn-padding-x-sm:            1rem !default;
+$btn-border-radius:           $border-radius !default;
+$btn-border-radius-sm:        $border-radius !default;
+
+$btn-padding-y-lg:            8px !default;
+$btn-padding-x-lg:            35px !default;
+$btn-font-size-lg:            18px !default;
+$btn-border-radius-lg:        $border-radius !default;
+
+// Badges
+$badge-padding-x:                   8px !default;
+
+// forms
+$input-color:                           $gray-900 !default;
+$input-border-color:                    rgba(#9EA5A4, .7) !default;
+$input-height:                          50px !default;
+$input-height-sm:                          36px !default;
+$input-placeholder-color:               #979797 !default;
+//$input-height-sm:                       add($input-line-height-sm * 1em, add($input-padding-y-sm * 2, $input-height-border, false)) !default;
+//$input-height-lg:                       add($input-line-height-lg * 1em, add($input-padding-y-lg * 2, $input-height-border, false)) !default;
+
+// Card
+$card-border-color:                 $gray-200 !default;
+
+//*-----------------------------------------------
+//|   Fonts Families
+//-----------------------------------------------*/
+$font-family-sans-serif: 'SF UI Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family-base: 'SF UI Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+
+$body-color: $gray-800;
+$line-height-base: 1.6;
+

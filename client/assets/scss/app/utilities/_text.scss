@@ -1,0 +1,115 @@
+/*-----------------------------------------------
+|   Font Sizes
+-----------------------------------------------*/
+@each $breakpoint in map_keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+    @each $index, $value in $font-sizes { .fs#{$infix}-#{$index}{ font-size: $value; } }
+  }
+}
+
+@each $breakpoint in map_keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+    @each $index, $value in $font-sizes { .fs#{$infix}-#{$index}{ font-size: $value; } }
+  }
+}
+
+/*-----------------------------------------------
+|   Font size with line height
+-----------------------------------------------*/
+@each $breakpoint in map_keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+    @each $index, $value in $heading-font-sizes { .heading#{$infix}-#{$index}{
+      font-size: $value;
+      line-height: map_get($heading-line-heights, $index);
+    } }
+  }
+}
+
+h1, .h1 {
+  font-size: map_get($heading-font-sizes, 1);
+  line-height: map_get($heading-line-heights, 1);
+}
+h2, .h2 {
+  font-size: map_get($heading-font-sizes, 2);
+  line-height: map_get($heading-line-heights, 2);
+}
+h3, .h3 {
+  font-size: map_get($heading-font-sizes, 3);
+  line-height: map_get($heading-line-heights, 3);
+}
+h4, .h4 {
+  font-size: map_get($heading-font-sizes, 4);
+  line-height: map_get($heading-line-heights, 4);
+}
+h5, .h5 {
+  font-size: map_get($heading-font-sizes, 5);
+  line-height: map_get($heading-line-heights, 5);
+}
+h6, .h6 {
+   font-size: map_get($heading-font-sizes, 6);
+   line-height: map_get($heading-line-heights, 6);
+ }
+
+.body-text-0 {
+  font-size: map_get($heading-font-sizes, 0);
+  line-height: map_get($heading-line-heights, 0);
+}
+.body-text-1 {
+  font-size: map_get($heading-font-sizes, '-1');
+  line-height: map_get($heading-line-heights, '-1');
+}
+.body-text-2 {
+  font-size: map_get($heading-font-sizes, '-2');
+  line-height: map_get($heading-line-heights, '-2');
+}
+.body-text-3 {
+  font-size: map_get($heading-font-sizes, '-3');
+  line-height: map_get($heading-line-heights, '-3');
+}
+
+/*-----------------------------------------------
+|   TODO: Proposed
+-----------------------------------------------*/
+.fsp-75{ font-size: 75%; }
+
+/*-----------------------------------------------
+|   Text style
+-----------------------------------------------*/
+
+/*   Font Weight */
+.font-weight-thin { font-weight: $font-weight-thin !important; }
+.font-weight-extra-light { font-weight: $font-weight-extra-light !important; }
+.font-weight-medium { font-weight: $font-weight-medium !important; }
+.font-weight-normal { font-weight: $font-weight-normal !important; }
+.font-weight-bold { font-weight: $font-weight-bold !important; }
+.font-weight-semi-bold { font-weight: $font-weight-semi-bold !important; }
+.font-weight-extra-bold { font-weight: $font-weight-extra-bold !important; }
+.font-weight-black { font-weight: $font-weight-black !important; }
+
+/* Decoration */
+.text-underline {
+  text-decoration: underline;
+  text-decoration-skip-ink: auto;
+}
+
+.text-smallcaps{ font-variant: small-caps; }
+.text-nowrap { white-space: nowrap!important; }
+
+/*-----------------------------------------------
+|   Font family
+-----------------------------------------------*/
+.text-sans-serif { font-family: $font-family-sans-serif; }
+.text-base { font-family: $font-family-base; }
+
+
+/*-----------------------------------------------
+|   Contextual colors
+-----------------------------------------------*/
+@each $color, $value in $grays { @include text-emphasis-variant(".text-#{$color}", $value); }
+
+.text-muted{
+  color: #979797 !important;
+}

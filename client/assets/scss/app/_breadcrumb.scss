@@ -1,0 +1,18 @@
+.breadcrumb {
+  padding: 0;
+  background-color: transparent;
+
+  .breadcrumb-item {
+    font-size: 14px;
+
+    &,
+    &::before,
+    a {
+      color: #999999;
+    }
+
+    &.active {
+      color: $green;
+    }
+  }
+}

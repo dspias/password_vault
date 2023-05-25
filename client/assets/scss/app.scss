@@ -1,0 +1,11 @@
+@import "app/fonts/font-face";
+@import "app/variables";
+
+// Then include the following
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'bootstrap-vue/src/index.scss';
+@import 'bootstrap-vue/src/icons.scss';
+
+
+// App style
+@import "app/app";
