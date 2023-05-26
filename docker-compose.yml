@@ -66,6 +66,14 @@ services:
       - ADMINER_DEFAULT_PASSWORD=app
       - ADMINER_DEFAULT_DB=app
 
+  # Mailhog container (SMTP testing)
+  mailhog:
+    build:
+      context: docker/mailhog
+      dockerfile: Dockerfile
+    ports:
+      - 8026:8025
+
   # Client container
   client:
     image: trust-review_client:development

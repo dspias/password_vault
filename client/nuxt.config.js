@@ -33,15 +33,13 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/set-nuxt-ssr-referer.server.js',
+    '~/plugins/global-components-loader.js',
     '~/plugins/extend-formdata.client.js',
     '~/plugins/init-csrf.client.js',
     '~/plugins/lodash-in-templates.js',
     '~/plugins/filters.js',
     '~/plugins/vee-validate'
   ],
-
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -58,7 +56,29 @@ export default {
     '@nuxtjs/auth-next'
   ],
   auth: {
-    // Options
+    strategies: {
+      local: {
+        token: {
+          required: false,
+          type: false
+        },
+        endpoints: {
+          login: { url: '/api/auth/login', method: 'post' },
+          logout: { url: '/api/auth/logout', method: 'post' },
+          user: { url: '/api/auth/user', method: 'get' }
+        }
+      }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/'
+    },
+    user: {
+      property: 'user',
+      autoFetch: true
+    }
   },
   module: {
     rules: [
@@ -90,7 +110,7 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: ['vee-validate/dist/rules']
+    transpile: ['vee-validate/dist/rules', 'defu']
   },
 
   router: {

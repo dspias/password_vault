@@ -1,21 +1,22 @@
 <template>
   <div>
-    <!-- <Tutorial /> -->
-    <div class="hello">Hello I am Pias Das</div>
+    Hello Ofspace
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({
-  name: 'IndexPage'
-})
+<script>
+export default {
+  data () {
+    return {
+    }
+  },
+  head () {
+    return {
+      title: ' | Collect Reviews and Get Hired'
+    }
+  }
+}
 </script>
 
-<style lang="scss" scoped>
-  .hello {
-    color: #ccc;
-    font-size: 10rem;
-  }
+<style scoped lang="scss">
 </style>
