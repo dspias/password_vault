@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
-            $verificationUrl = $this->verificationUrl($notifiable);
+            $verificationUrl = $this->verificationUrl($url);
             return (new MailMessage)
                 ->subject('Verify Email Address')
                 ->line('Click the button below to verify your email address.')
@@ -46,20 +46,16 @@ class AuthServiceProvider extends ServiceProvider
     * @param  mixed  $notifiable
     * @return string
     */
-    protected function verificationUrl($notifiable)
+    protected function verificationUrl($url)
     {
-        $signed_url = URL::temporarySignedRoute(
-            'verification.verify',
-            Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
-            [
-                'id' => $notifiable->getKey(),
-                'hash' => sha1($notifiable->getEmailForVerification()),
-            ],
-            false
-        );;
+        $parsedUrl = parse_url($url);
+        $path = isset($parsedUrl['path']) ? $parsedUrl['path'] : '';
+        $query = isset($parsedUrl['query']) ? '?' . $parsedUrl['query'] : '';
+
+        $newUrl = $path . $query;
 
         return str_replace('/api/auth/verify',
             config('app.url').'/step2/verify',
-            $signed_url);
+            $newUrl);
     }
 }

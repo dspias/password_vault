@@ -57,15 +57,13 @@ export default {
   ],
   auth: {
     strategies: {
-      local: {
-        token: {
-          required: false,
-          type: false
-        },
+      laravelSanctum: {
+        provider: 'laravel/sanctum',
+        url: 'api',
         endpoints: {
-          login: { url: '/api/auth/login', method: 'post' },
-          logout: { url: '/api/auth/logout', method: 'post' },
-          user: { url: '/api/auth/user', method: 'get' }
+          login: { url: '/auth/login', method: 'post' },
+          logout: { url: '/auth/logout', method: 'post' },
+          user: { url: '/auth/user', method: 'get' }
         }
       }
     },
@@ -76,7 +74,7 @@ export default {
       home: '/'
     },
     user: {
-      property: 'user',
+      property: false,
       autoFetch: true
     }
   },

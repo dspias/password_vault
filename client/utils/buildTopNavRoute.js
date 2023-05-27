@@ -3,7 +3,7 @@ export default () => {
   // Recommend
   const topNavRoutes = [
     {
-      to: '/index',
+      to: '/',
       name: 'Dashboard',
       badge: false
     },

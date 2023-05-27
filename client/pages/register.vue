@@ -103,8 +103,13 @@ export default {
     registerUser () {
       this.loading = true
       this.$axios.post('/api/auth/register', this.info)
-        .then((res) => {
-          this.$auth.setUser(res.data)
+        .then(async () => {
+          await this.$auth.loginWith('laravelSanctum', {
+            data: {
+              email: this.info.email,
+              password: this.info.password
+            }
+          })
           this.success = true
           this.$bvToast.toast('Signup successful', {
             title: 'Success message',

@@ -88,8 +88,8 @@ export default {
       this.loading = true
       this.$set(this, 'error', {})
       try {
-        await this.$auth.loginWith('local', { data: this.login })
-        this.$auth.redirect('home')
+        await this.$auth.loginWith('laravelSanctum', { data: this.login })
+        .then(() => this.$auth.redirect('home'))
         this.loading = false
       } catch (e) {
         this.$set(this, 'error', _.get(e, 'response.data.errors', {}))

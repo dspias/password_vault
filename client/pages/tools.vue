@@ -1,6 +1,6 @@
 <template>
   <div>
-    Hello Index
+    Hello Tools
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
   },
   head () {
     return {
-      title: 'Dashboard'
+      title: 'Tools'
     }
   }
 }
