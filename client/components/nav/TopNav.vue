@@ -37,18 +37,15 @@
               class="flex-column ml-lg-4-1"
               :class="`order-lg-${topNavRoutes.length + 2}`"
             />
-            <template v-for="(route, i) in topNavRoutes">
-              <b-nav-item
-                v-if="$route.name !== 'reviews-id-projects-add'"
-                :key="i"
-                class="border-top border-lg-top-0 border-200 d-flex align-items-center text-nowrap px-0 py-3 py-lg-0 ml-lg-4-1"
-                link-classes="p-0"
-                :to="route.to"
-              >
-                {{ route.name }}
-                <b-icon v-if="route.badge" class="text-danger" style="margin-bottom:0.4rem;" icon="circle-fill" font-scale=".3" />
-              </b-nav-item>
-            </template>
+            <b-nav-item
+              v-for="(route, i) in topNavRoutes"
+              :key="i"
+              class="border-top border-lg-top-0 border-200 d-flex align-items-center text-nowrap px-0 py-3 py-lg-0 ml-lg-4-1"
+              link-classes="p-0"
+              :to="route.to"
+            >
+              {{ route.name }}
+            </b-nav-item>
           </b-navbar-nav>
         </b-collapse>
         <div class="navbar-mobile-overlay" />
@@ -100,6 +97,10 @@ $black: #000000 !default;
       color: $green;
     }
   }
+}
+
+.nuxt-link-exact-active {
+  color: $green !important;
 }
 
 .z-index {

@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+
+            $table->foreignId('folder_id')->nullable()->nullOnDelete()->constrained();
+
+            $table->string('username');
+            $table->string('password');
+            $table->text('notes');
+
             $table->timestamps();
         });
     }

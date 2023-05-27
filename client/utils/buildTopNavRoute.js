@@ -4,7 +4,7 @@ export default () => {
   const topNavRoutes = [
     {
       to: '/',
-      name: 'Dashboard',
+      name: 'Vault',
       badge: false
     },
     {

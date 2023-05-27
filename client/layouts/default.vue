@@ -3,7 +3,9 @@
     <div class="default-navbar-standard">
       <top-nav class="bg-white navbar-shadow" />
     </div>
-    <nuxt />
+    <div class="container mt-4">
+      <nuxt />
+    </div>
   </div>
 </template>
 
