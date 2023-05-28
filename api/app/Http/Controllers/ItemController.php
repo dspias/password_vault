@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Http\Resources\ItemResource;
+use Illuminate\Database\Eloquent\Builder;
 
 class ItemController extends Controller
 {
@@ -21,7 +22,8 @@ class ItemController extends Controller
      */
     public function index(Request $request)
     {
-        return response()->json($this->items());
+        $folder_id = $request->input('folder_id');
+        return response()->json($this->items($folder_id));
     }
 
     /**
@@ -85,6 +87,8 @@ class ItemController extends Controller
         $folder_id = $request->input('folder_id');
         if($folder_id && $folder_id != 'no') {
             $item->folder_id = $folder_id;
+        } elseif ($folder_id == 'no') {
+            $item->folder_id = null;
         }
         if($request->input('notes')) {
             $item->notes = $request->input('notes');
@@ -104,9 +108,15 @@ class ItemController extends Controller
         return response()->json($this->items());
     }
 
-    protected function items()
+    protected function items($folder_id = null)
     {
-        $items = Item::with('folder')->get();
+        if ($folder_id == 'no') {
+            $items = Item::whereNull('folder_id')->get();
+        } elseif ($folder_id == null) {
+            $items = Item::with('folder')->get();
+        } else {
+            $items = Item::with('folder')->whereFolder_id($folder_id)->get();
+        }
         $items->map(function ($item) {
             $item['username'] = $this->decryption($item['username']);
             $item['password'] = $this->decryption($item['password']);

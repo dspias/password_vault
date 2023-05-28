@@ -23,7 +23,7 @@ class Folder extends Model
      /**
      * Get the items for the folder.
      */
-    public function comments(): HasMany
+    public function items(): HasMany
     {
         return $this->hasMany(Item::class, 'folder_id', 'id');
     }

@@ -103,13 +103,13 @@ export default {
     submit () {
       this.loading = true
       this.$axios.put(`/api/folders/update/${this.info.id}`, this.info)
-        .then(() => {
+        .then((res) => {
           this.$bvModal.hide(this.id)
           this.$bvToast.toast('Folder updated successfully', {
             title: 'Success message',
             variant: 'success'
           })
-          this.$router.push({ name: 'index' })
+          this.$emit('updateFolder', res.data)
         })
         .catch((e) => {
           this.$set(this, 'error', _.get(e, 'response.data.errors', {}))

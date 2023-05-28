@@ -58,6 +58,11 @@ class FolderController extends Controller
      */
     public function destroy(Folder $folder)
     {
+        $folder->load('items');
+        foreach($folder->items as $item) {
+            $item->folder_id = null;
+            $item->save();
+        }
         $folder->delete();
 
         return response()->json($this->folders());

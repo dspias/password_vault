@@ -173,7 +173,7 @@ export default {
     submit () {
       this.loading = true
       this.$axios.post('/api/items/store', this.info)
-        .then(() => {
+        .then((res) => {
           this.info = {
             name: null,
             folder_id: null,
@@ -182,7 +182,7 @@ export default {
             notes: null
           }
           this.$bvModal.hide(this.id)
-          this.$router.push({ name: 'index' })
+          this.$emit('updateItem', res.data)
         })
         .catch((e) => {
           this.$set(this, 'error', _.get(e, 'response.data.errors', {}))

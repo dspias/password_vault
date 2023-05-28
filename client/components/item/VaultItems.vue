@@ -48,7 +48,12 @@
         />
       </b-col>
     </b-row>
-    <update-item-modal id="edit-item" :item.sync="editItem" :folders="folders" />
+    <update-item-modal
+      id="edit-item"
+      :item.sync="editItem"
+      :folders="folders"
+      @updateItem="updateItems => $emit('updateItem', updateItems)"
+    />
   </div>
 </template>
 
@@ -95,12 +100,13 @@ export default {
     },
     async destroyItem (id) {
       try {
-        const response = await this.$axios.delete(`/api/items/delete/${id}`).then(response => response.data)
+        const response = await this.$axios.delete(`/api/items/delete/${id}`)
+          .then(response => response.data)
         this.$bvToast.toast('Item deleted', {
           title: 'Success message',
           variant: 'success'
         })
-        console.log(response)
+        this.$emit('updateItem', response)
       } catch (e) {
         this.$set(this, 'error', _.get(e, 'response.data.errors', {}))
         const notifications = Object.values(_.get(e, 'response.data.errors', {}))

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
 
-            $table->foreignId('folder_id')->nullable()->nullOnDelete()->constrained();
+            $table->foreignId('folder_id')->nullable()->onDelete('cascade')->constrained();
 
             $table->string('username');
             $table->string('password');

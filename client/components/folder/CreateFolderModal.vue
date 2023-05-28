@@ -82,9 +82,9 @@ export default {
     submit () {
       this.loading = true
       this.$axios.post('/api/folders/store', this.info)
-        .then(() => {
+        .then((res) => {
           this.$bvModal.hide(this.id)
-          this.$router.push({ name: 'index' })
+          this.$emit('updateFolder', res.data)
         })
         .catch((e) => {
           this.$set(this, 'error', _.get(e, 'response.data.errors', {}))

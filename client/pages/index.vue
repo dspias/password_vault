@@ -7,7 +7,7 @@
             <b class="text-black">All credentials</b>
             <p
               class="mb-0 mt-2 cursor-pointer"
-              :class="{'text-green': selectedFolder === null}"
+              :class="{'text-green': selectedFolder === ''}"
               @click="selectFolder()"
             >
               <b-icon-blockquote-left class="mr-1" /> All
@@ -64,11 +64,26 @@
         </b-button>
       </div>
       <hr class="my-2-1">
-      <vault-items :items.sync="items" :folders.sync="folders" />
+      <vault-items
+        :items.sync="items"
+        :folders.sync="folders"
+        @updateItem="updateItems => items = updateItems"
+      />
     </b-col>
-    <create-item-modal id="create-item" :folders.sync="folders" />
-    <create-folder-modal id="create-folder" />
-    <edit-folder-modal id="edit-folder" :folder.sync="editFolder" />
+    <create-item-modal
+      id="create-item"
+      :folders.sync="folders"
+      @updateItem="updateItems => items = updateItems"
+    />
+    <create-folder-modal
+      id="create-folder"
+      @updateFolder="updateFolders => folders = updateFolders"
+    />
+    <edit-folder-modal
+      id="edit-folder"
+      :folder.sync="editFolder"
+      @updateFolder="updateFolders => folders = updateFolders"
+    />
   </b-row>
 </template>
 
@@ -86,7 +101,7 @@ export default {
       success: false,
       error: {},
       editFolder: {},
-      selectedFolder: null
+      selectedFolder: ''
     }
   },
   head () {
@@ -97,7 +112,7 @@ export default {
   watch: {
     selectedFolder: {
       handler (value) {
-        this.$axios.get('api/items', { folder: this.selectedFolder })
+        this.$axios.get(`api/items?folder_id=${this.selectedFolder}`)
           .then(res => res.data)
           .then((res) => {
             this.items = res
@@ -111,7 +126,7 @@ export default {
       this.editFolder = { ...folder }
       this.$bvModal.show('edit-folder')
     },
-    selectFolder (id = null) {
+    selectFolder (id = '') {
       this.selectedFolder = id
     }
   }
