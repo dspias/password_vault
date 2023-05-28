@@ -25,6 +25,7 @@
     "bootstrap": "^4.6.2",
     "bootstrap-vue": "^2.22.0",
     "core-js": "^3.25.3",
+    "json2csv": "^6.0.0-alpha.2",
     "nuxt": "^2.15.8",
     "vee-validate": "^3.3.2",
     "vue": "^2.7.10",

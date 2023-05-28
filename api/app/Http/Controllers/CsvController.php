@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CsvController extends Controller
 {
@@ -11,7 +12,7 @@ class CsvController extends Controller
      */
     public function export()
     {
-        return response()->json($this->folders());
+        return Excel::download(new ExportItems, 'vault.csv');
     }
 
     /**
