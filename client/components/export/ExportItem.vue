@@ -1,17 +1,16 @@
 <template>
   <div>
-    <div class="d-flex justify-content-between">
-      <h4 class="mb-2">
-        Export Vault
-      </h4>
-      <b-button
-        v-b-modal.create-item
-        variant="green"
-      >
-        <b-icon-plus class="mr-1 fs-2 cursor-pointer" /> New item
-      </b-button>
-    </div>
+    <h4 class="mb-2">
+      Export Vault
+    </h4>
     <hr class="my-2-1">
+    <b-row>
+      <b-col>
+        <b-link href="/api/csv/export">
+          Download vault as SVG
+        </b-link>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -20,6 +19,26 @@ export default {
   name: 'ExportItem',
   data () {
     return {
+      loading: false,
+      success: false
+    }
+  },
+  methods: {
+    submit () {
+      this.loading = true
+      this.$axios.post('/api/csv/export')
+        .then((res) => {
+        })
+        .catch((e) => {
+          this.$set(this, 'error', _.get(e, 'response.data.errors', {}))
+          this.$bvToast.toast('Something wrong', {
+            title: 'Error message',
+            variant: 'danger'
+          })
+        })
+        .finally(() => {
+          this.loading = false
+        })
     }
   }
 }

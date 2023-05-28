@@ -17,8 +17,21 @@ RUN docker-php-ext-install exif
 # Zip
 RUN apt-get install -y libzip-dev zip && docker-php-ext-install zip
 
+#XML
+RUN apt-get install -y libxml2-dev && docker-php-ext-install xml
+
 # Curl
 RUN apt-get install -y libcurl3-dev curl && docker-php-ext-install curl
+
+# GD
+RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev
+RUN docker-php-ext-install gd
+
+# Iconv
+RUN docker-php-ext-install iconv
+
+# simplexml
+RUN docker-php-ext-install simplexml
 
 # PostgreSQL
 RUN apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
