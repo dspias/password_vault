@@ -1,12 +1,12 @@
 <template>
   <main>
     <div v-if="!error">
-      <h1  class="fs-2 text-success mb-0 mb-md-2">
+      <h1 class="fs-2 text-success mb-0 mb-md-2">
         Email verification successfull
       </h1>
       <div class="mt-3">
         <b-button variant="green" to="/" size="lg" class="px-4 fs-0" readonly>
-          Dashboard
+          Vault
         </b-button>
       </div>
     </div>

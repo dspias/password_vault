@@ -1,8 +1,15 @@
 <template>
   <main>
-    <h1 v-if="_.get($auth, 'user.emailVerified')" class="fs-2 text-success mb-0 mb-md-2">
-      Email verification successfull
-    </h1>
+    <div v-if="_.get($auth, 'user.emailVerified')">
+      <h1 class="fs-2 text-success mb-0 mb-md-2">
+        Email verification successfull
+      </h1>
+      <div class="mt-3">
+        <b-button variant="green" to="/" size="lg" class="px-4 fs-0" readonly>
+          Vault
+        </b-button>
+      </div>
+    </div>
     <div v-else class="text-center text-sm-left">
       <h1 class="fs-2 text-black mb-0 mb-md-2 font-weight-normal">
         Hi, {{ _.get($auth, 'user.name') }}

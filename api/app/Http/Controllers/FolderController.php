@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Folder;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Http\Resources\FolderResource;
 
 class FolderController extends Controller
@@ -12,7 +11,7 @@ class FolderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index()
     {
         return response()->json($this->folders());
     }
@@ -22,7 +21,15 @@ class FolderController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $request->validate([
+            'name' => 'required|string|max:50',
+        ]);
+        
+        $folder = Folder::create([
+            'name' => $request->name
+        ]);
+
+        return response()->json($this->folders());
     }
 
     /**
@@ -30,7 +37,6 @@ class FolderController extends Controller
      */
     public function show(Folder $folder)
     {
-        $folder->load('items');
         return response()->json(FolderResource::make($folder));
     }
 
@@ -39,7 +45,12 @@ class FolderController extends Controller
      */
     public function update(Request $request, Folder $folder)
     {
-        dd($request, $id);
+        $request->validate([
+            'name' => 'required|string|max:50',
+        ]);
+        $folder->update($request->only(['name']));
+
+        return response()->json($this->folders());
     }
 
     /**

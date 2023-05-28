@@ -18,8 +18,10 @@ class ItemResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'folder' => $this->folder,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'username' => $this->username,
+            'password' => $this->password,
+            'createdAt' => $this->created_at,
+            'updatedAt' => $this->updated_at,
         ];
     }
 }
