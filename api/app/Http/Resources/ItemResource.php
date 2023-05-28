@@ -20,6 +20,7 @@ class ItemResource extends JsonResource
             'folder' => $this->folder,
             'username' => $this->username,
             'password' => $this->password,
+            'notes' => $this->notes,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
         ];

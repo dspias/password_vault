@@ -64,7 +64,7 @@
         </b-button>
       </div>
       <hr class="my-2-1">
-      <vault-items items.sync="items" />
+      <vault-items :items.sync="items" :folders.sync="folders" />
     </b-col>
     <create-item-modal id="create-item" :folders.sync="folders" />
     <create-folder-modal id="create-folder" />
