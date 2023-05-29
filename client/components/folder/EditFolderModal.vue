@@ -125,9 +125,9 @@ export default {
     destroy () {
       this.loading = true
       this.$axios.delete(`/api/folders/delete/${this.info.id}`)
-        .then(() => {
+        .then((res) => {
           this.$bvModal.hide(this.id)
-          this.$router.push({ name: 'index' })
+          this.$emit('updateFolder', res.data)
         })
         .catch((e) => {
           this.$set(this, 'error', _.get(e, 'response.data.errors', {}))
