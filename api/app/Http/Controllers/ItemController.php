@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Folder;
 use Illuminate\Http\Request;
 use App\Http\Resources\ItemResource;
 use Illuminate\Database\Eloquent\Builder;
@@ -136,5 +137,31 @@ class ItemController extends Controller
         $encryptedPassword = $parts[0];
         $iv = base64_decode($parts[1]);
         return openssl_decrypt($encryptedPassword, $this->cipher, $this->encriptionKey, 0, $iv);
+    }
+
+    /**
+     * Import item from csv files
+     */
+
+    public function import(Request $request)
+    {
+        foreach($request->rows as $row) {
+            $item = Item::create([
+                'name' => $row['name'],
+                'username' => $this->encription($row['username']),
+                'password' => $this->encription($row['password']),
+            ]);
+
+            if ($row['folder']) {
+                $folder = Folder::create([ 'name' => $row['folder'] ]);
+                $item->folder_id = $folder->id;
+            }
+            if($request->input('notes')) {
+                $item->notes = $request->input('notes');
+            }
+            $item->save();
+        }
+        
+        return response()->json($this->items());
     }
 }

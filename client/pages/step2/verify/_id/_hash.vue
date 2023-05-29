@@ -5,7 +5,7 @@
         Email verification successfull
       </h1>
       <div class="mt-3">
-        <b-button variant="green" to="/" size="lg" class="px-4 fs-0" readonly>
+        <b-button variant="green" to="/" size="lg" class="px-4 fs-0">
           Vault
         </b-button>
       </div>

@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CsvController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\FolderController;
 
@@ -37,9 +36,5 @@ Route::middleware(['auth:sanctum'])->prefix('items')->group(function() {
     Route::post('/store', [ItemController::class, 'store']);
     Route::put('/update/{item}', [ItemController::class, 'update']);
     Route::delete('/delete/{item}', [ItemController::class, 'destroy']);
-});
-
-Route::middleware(['auth:sanctum'])->prefix('csv')->group(function() {
-    Route::get('/export', [CsvController::class, 'export']);
-    Route::post('/import', [CsvController::class, 'import']);
+    Route::post('/import', [ItemController::class, 'import']);
 });
